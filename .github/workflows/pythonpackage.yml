@@ -41,11 +41,11 @@ jobs:
         if: ${{ matrix.python-version == '3.9' }}
       - name: Test with pytest (Py310+ - with syntax highlighting)
         run: |
-          poetry run pytest tests -v --cov=./src/textual --cov-report=xml:./coverage.xml --cov-report term-missing
+          poetry run pytest tests -v -n auto --dist=loadgroup --cov=./src/textual --cov-report=xml:./coverage.xml --cov-report term-missing
         if: ${{ matrix.python-version != '3.9' }}
       - name: Test with pytest (Py39 - without syntax highlighting)
         run: |
-          poetry run pytest tests -v --cov=./src/textual --cov-report=xml:./coverage.xml --cov-report term-missing -m 'not syntax'
+          poetry run pytest tests -v -n auto --dist=loadgroup --cov=./src/textual --cov-report=xml:./coverage.xml --cov-report term-missing -m 'not syntax'
         if: ${{ matrix.python-version == '3.9' }}
       - name: Upload snapshot report
         if: always()
